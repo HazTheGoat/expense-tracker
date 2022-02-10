@@ -5,9 +5,107 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f9f9f9;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  text-align: center;
+}
+
+/* Balance */
+
+.balance h2 {
+  text-transform: uppercase;
+}
+
+
+/* History */
+
+.historyItems {
+  background-color: #fff;
+  border-style: outset;
+  border-radius: 0px;
+  border-bottom-style: 1px solid #bdbdbd;
+  display: block;
+  margin:5px;
+  text-decoration: none;
+}
+
+.historyItems p {
+  padding-left: 10px;
+}
+
+.historyItemPrice {
+  float: right;
+  padding-right: 5px;
+}
+
+.rightBar {
+  border-right: 6px solid #11c238;
+  margin: 0;
+  padding: 10px;
+}
+
+/* Transaction Form */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  /* padding-left: 10px;
+} */
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* ::-webkit-input-placeholder { padding-left: 10px; }
+input[type="text"]::-moz-placeholder { padding-left: 10px; }
+input[type="text"]:-moz-placeholder { padding-left: 10px; }
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  /* padding-left: 10px;
+} */
+
+/* ::-ms-input-placeholder { /* Microsoft Edge */
+  /* padding-left: 10px;
+} */
+
+input {
+  border: 1px solid #bdbdbd;
+  box-shadow: none;
+  border-radius: 0px;
+  color: #4f4f4f;
+  display: block;
+  margin-top: 5px;
+  padding: 8px 0px 8px 5px;
+  width: 100%;
+}
+
+input[type="text"] {
+  padding-left: 10px;
+}
+
+
+button {
+  background-color: mediumslateblue;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px 0px;
+}
+

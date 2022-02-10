@@ -36,7 +36,11 @@ function TransactionForm() {
       <div>
         <label>Text</label>
         <br />
-        <input value={text} onChange={handleTextChange} />
+        <input
+          value={text}
+          onChange={handleTextChange}
+          placeholder="Enter text..."
+        />
       </div>
       <br />
 
@@ -44,9 +48,13 @@ function TransactionForm() {
         <label>Amount</label>
         <br />
         <div>(Negative - expense, positive - income)</div>
-        <input type="number" value={amount} onChange={handleAmountChange} />
+        <input
+          type="number"
+          value={amount}
+          onChange={handleAmountChange}
+          placeholder="Enter amount..."
+        />
       </div>
-      <br />
 
       <button type="button" onClick={handleAddTransaction}>
         Add transaction

@@ -1,21 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useReadLocalStorage } from 'usehooks-ts';
 
 function History() {
   const history = useReadLocalStorage('history');
-
+  //TODO Style the history thats being shown
   return (
     <div>
-      <h1>History</h1>
+      <h2>History</h2>
+      <hr />
       {history &&
         history.map((item, i) => (
-          <div key={i}>
-            <p>{item.text}</p>
-            <p>{item.amount}</p>
+          <div className="historyItems" key={i}>
+            <p className="rightBar">
+              {item.text}
+              <span className="historyItemPrice">{item.amount}</span>
+            </p>
           </div>
         ))}
-      <hr />
     </div>
   );
 }
