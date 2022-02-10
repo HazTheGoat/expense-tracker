@@ -6,7 +6,7 @@ import Balance from './Balance';
 function ExpenseTracker() {
   return (
     <div>
-      <h1>Expense Tracker</h1>
+      <h1 className="heading">Expense Tracker</h1>
       <Balance />
       <History />
       <TransactionForm />
