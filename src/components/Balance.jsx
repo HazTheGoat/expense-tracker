@@ -1,33 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useReadLocalStorage } from 'usehooks-ts';
 
 function Balance() {
   const history = useReadLocalStorage('history');
-  const income = 500;
 
-  // Create our number formatter.
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const [income, setIncome] = useState(500);
+  const [expense, setExpense] = useState(0);
 
-    // These options are needed to round to whole numbers if that's what you want.
-    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-  });
+  //? Hvordan sjekke income?
+  //* Vi må sette en state på hva som blir satt inn, negative = expense, positive = income
 
-  formatter.format(income); /* $500.00 */
+  useEffect(() => {
+    // Kjør denne koden, hver gang history oppdateres
+    console.log('HISTORY: ', history);
+    if (!history) return;
 
-  //? Tried forEach first, but the result was wrong, tried .reduce next and the result was also wrong
-  //   let expense = 0;
-  //   history.forEach((item) => {
-  //     expense += item.amount;
-  //   });
+    if (history.length === 1) {
+      setIncome(history[0].amount);
+    } else {
+      setIncome(
+        history.reduce(
+          (prevValue, currentValue) => prevValue.amount + currentValue.amount
+        )
+      );
+    }
+  }, [history]);
+
+  useEffect(() => {
+    // Kjør denne koden, hver gang history oppdateres
+    console.log('HISTORY: ', history);
+    if (!history) return;
+
+    if (history.length === 1) {
+      setExpense(history[0].amount);
+    } else {
+      setExpense(
+        history.reduce(
+          (prevValue, currentValue) => prevValue.amount + currentValue.amount
+        )
+      );
+    }
+  }, [history]);
 
   //TODO Find out why reduce doesn't work
-  // const expense = history.reduce(
-  //   (previousValue, currentValue) => previousValue + currentValue.amount
-  // );
-  // console.log(expense);
   //TODO Setup the balance UI/CSS
   //TODO Setup a grid for the balance
 
@@ -45,7 +60,7 @@ function Balance() {
         <div>
           EXPENSE
           <br />
-          [$240]
+          {expense}
         </div>
       </div>
     </div>

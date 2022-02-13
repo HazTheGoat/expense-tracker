@@ -21,7 +21,7 @@ function TransactionForm() {
       ...history,
       {
         text,
-        amount,
+        amount: Number(amount),
       },
     ]);
     setText('');
