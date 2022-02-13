@@ -1,50 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useReadLocalStorage } from 'usehooks-ts';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useReadLocalStorage, useLocalStorage } from 'usehooks-ts';
 
 function Balance() {
   const history = useReadLocalStorage('history');
 
-  const [income, setIncome] = useState(500);
-  const [expense, setExpense] = useState(0);
+  const getSumOfIncome = () => {
+    const sum = history.reduce(
+      (prevValue, currentObject) =>
+        currentObject.amount > 0
+          ? prevValue + currentObject.amount
+          : prevValue + 0,
+      0
+    );
 
-  //? Hvordan sjekke income?
-  //* Vi må sette en state på hva som blir satt inn, negative = expense, positive = income
+    return sum;
+  };
 
-  useEffect(() => {
-    // Kjør denne koden, hver gang history oppdateres
-    console.log('HISTORY: ', history);
-    if (!history) return;
+  const getSumOfExpenses = () => {
+    const sum = history.reduce(
+      (prevValue, currentObject) =>
+        currentObject.amount < 0
+          ? prevValue + currentObject.amount
+          : prevValue + 0,
+      0
+    );
 
-    if (history.length === 1) {
-      setIncome(history[0].amount);
-    } else {
-      setIncome(
-        history.reduce(
-          (prevValue, currentValue) => prevValue.amount + currentValue.amount
-        )
-      );
-    }
-  }, [history]);
-
-  useEffect(() => {
-    // Kjør denne koden, hver gang history oppdateres
-    console.log('HISTORY: ', history);
-    if (!history) return;
-
-    if (history.length === 1) {
-      setExpense(history[0].amount);
-    } else {
-      setExpense(
-        history.reduce(
-          (prevValue, currentValue) => prevValue.amount + currentValue.amount
-        )
-      );
-    }
-  }, [history]);
-
-  //TODO Find out why reduce doesn't work
-  //TODO Setup the balance UI/CSS
-  //TODO Setup a grid for the balance
+    return sum;
+  };
 
   return (
     <div className="balance">
@@ -55,12 +37,12 @@ function Balance() {
         <div>
           INCOME
           <br />
-          {income}
+          {getSumOfIncome()}
         </div>
         <div>
           EXPENSE
           <br />
-          {expense}
+          {getSumOfExpenses()}
         </div>
       </div>
     </div>
